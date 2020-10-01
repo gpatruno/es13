@@ -1,18 +1,15 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { APIService } from '../API & Auth/api.service';
-import IMessage from '../models/IMessage';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-article-form',
   templateUrl: './article-form.component.html',
   styleUrls: ['./article-form.component.scss']
 })
+
 export class ArticleFormComponent implements OnInit {
-  form: FormGroup;
-  loading: boolean = false;
-  
+
   valueColor = "#ffffff";
   public upload = new Date();
   public timeUpload = new Date().getHours() + ':' + new Date().getMinutes();
@@ -21,23 +18,16 @@ export class ArticleFormComponent implements OnInit {
   imgURL: any;
   public image;
   public message: string;
+  
+  constructor(private router: Router, private apiService: APIService) { 
 
-  @ViewChild('fileInput') fileInput: ElementRef;
-
-  constructor(private router: Router, private apiService: APIService, private fb: FormBuilder) { 
-    this.createForm();
   }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    const formModel = this.prepareSave();
-    console.log(formModel);
-    this.apiService.uploadImage(this.image).subscribe((response: IMessage) => {
-      // Si la requête a été réussi
-      console.log(response);
-    });
+
   }
 
   preview(files) {
@@ -57,31 +47,5 @@ export class ArticleFormComponent implements OnInit {
     reader.onload = (_event) => { 
       this.imgURL = reader.result; 
     }
-  }
-
-  createForm() {
-    this.form = this.fb.group({
-      name: ['', Validators.required],
-      image: null
-    });
-  }
-
-  private prepareSave(): any {
-    let input = new FormData();
-    // input.append('name', this.form.get('name').value);
-    input.append('image', this.form.get('fileTest').value);
-    return input;
-  }
-
-  onFileChange(event) {
-    if(event.target.files.length > 0) {
-      let file = event.target.files[0];
-      this.form.get('fileTest').setValue(file);
-    }
-  }
-
-  clearFile() {
-    this.form.get('fileTest').setValue(null);
-    this.fileInput.nativeElement.value = '';
   }
 }

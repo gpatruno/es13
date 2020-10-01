@@ -23,7 +23,7 @@
     <div id="backfont">
         <h2>Ajout / Modifier un Article </h2>
         <hr />
-        <form #productForm="ngForm"  (ngSubmit)="onSubmit()" novalidate>
+        <form #productForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
             <h4>Caractéristiques de l'article</h4>
             <div class="row">
                 <div class="col-sm-4">
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12" style="border-color: black;">
+                <div class="col-12">
                     <img [src]="imgURL" height="500" *ngIf="imgURL">
                 </div>
             </div>

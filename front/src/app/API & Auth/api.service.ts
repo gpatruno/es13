@@ -29,10 +29,14 @@ export class APIService {
   }
 
   getAdmin(): Observable<any> {
-    return this.http.get(endpoint + '/login');
+    return this.http.get(endpoint + 'login');
   }
 
   logoutAdmin(): Observable<any> {
     return this.http.get(endpoint + 'admin/logout');
+  }
+
+  uploadImg(image): Observable<any> {
+    return this.http.post(endpoint + 'upload', image);
   }
 }

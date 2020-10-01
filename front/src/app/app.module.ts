@@ -22,6 +22,7 @@ import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { LoginComponent } from './login/login.component';
+import { ArticleFormComponent } from './article-form/article-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LoginComponent } from './login/login.component';
     MainComponent,
     FooterComponent,
     AdministrationComponent,
-    LoginComponent
+    LoginComponent,
+    ArticleFormComponent
   ],
   imports: [
     BrowserModule,
