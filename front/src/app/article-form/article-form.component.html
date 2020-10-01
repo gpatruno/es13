@@ -1,0 +1,80 @@
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" style="padding-top: 1%;" href="/administration">
+        <blockquote class="blockquote ">
+            <p class="mb-0">Administration</p>
+            <footer class="blockquote-footer"><cite title="Source Title">ES13</cite></footer>
+        </blockquote>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <button  mat-raised-button color="primary" mat-button [matMenuTriggerFor]="User">Articles &nbsp; <i class="fas fa-users"></i></button>
+            <mat-menu #User="matMenu" yPosition="above">
+                <button mat-menu-item><a class="nav-link" href="/">Liste des articles &nbsp;<i
+                            class="fas fa-list-ul"></i></a></button>
+                <button mat-menu-item><a class="nav-link" href="/article">Ajouter un article &nbsp;<i
+                            class="fas fa-plus"></i></a></button>
+            </mat-menu>
+        </div>
+    </div>
+</nav>
+<div class="form">
+    <hr>
+    <div id="backfont">
+        <h2>Ajout / Modifier un Article </h2>
+        <hr />
+        <form #productForm="ngForm"  (ngSubmit)="onSubmit()" novalidate>
+            <h4>Caractéristiques de l'article</h4>
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label><i class="fas fa-edit"></i> &nbsp; Titre </mat-label>
+                        <input matInput placeholder="Titre" name="title" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label><i class="fas fa-calendar-alt"></i> &nbsp; Date de mise en ligne</mat-label>
+                        <input matInput [ngModel]="upload | date:'yyyy-MM-dd'" (ngModelChange)="upload = $event"
+                            type="date" name="dateUpload" readonly />
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label><i class="fas fa-calendar-alt"></i> &nbsp; Heure de mise en ligne</mat-label>
+                        <input matInput [ngModel]="timeUpload" (ngModelChange)="timeUpload = $event" type="time"
+                            name="timeUpload" readonly />
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <mat-form-field appearance="outline" style="width: 80%; padding-top: 10px;">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput style="width: 100%;" name="text" required></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <button mat-raised-button color="primary" name="btn" id="btn" (click)="file.click()">Sélectionner une image</button>
+                    <input #file type="file" accept='image/*' id="filePath" name="filePath" (change)="preview(file.files)" required style="display: none;"/>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Couleur du poste</mat-label>
+                        <input matInput type="color" [(ngModel)]="valueColor"  name="colorInput" value="#d6d6d6">
+                      </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" style="border-color: black;">
+                    <img [src]="imgURL" height="500" *ngIf="imgURL">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<footer>
+
+</footer>

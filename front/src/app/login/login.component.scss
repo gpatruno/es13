@@ -1,0 +1,41 @@
+#form{
+    padding-top: 10%;
+    margin: auto;
+    text-align: center;
+  }
+  
+  #backfont{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin: auto;
+    text-align: center;
+    width: 20%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+  }
+  
+  .back-error {
+    background-color: rgba(201, 201, 201, 0.8);
+    border-radius: 10px;
+    margin: auto;
+    text-align: center;
+    width: 20%;
+  }
+  
+  .mat-form-field-flex {
+   background-color: white;
+  } 
+  
+  .btn-valid {
+    background-color: #7BED8D;
+    align-content: center;
+  }
+  
+  #navigation {
+    display: none;
+  }
+  
+  mat-form-field {
+    width: 70%;
+  } 
+  

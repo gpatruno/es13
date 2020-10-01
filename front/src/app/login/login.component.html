@@ -1,0 +1,24 @@
+<div id="form">
+    <div id="backfont">
+        <h2>Connexion</h2>
+        <span>Espace Administrateur</span>
+        <br> <br>
+        <mat-form-field appearance="fill">
+            <mat-label><i class="fas fa-user"></i> &nbsp; Login </mat-label>
+            <input matInput placeholder="Identifiant" required [(ngModel)]="username" (keydown)="onKeydown($event)">
+        </mat-form-field> <br> <br>
+
+        <mat-form-field appearance="fill">
+            <mat-label><i class="fas fa-lock"></i> &nbsp; Mot de passe</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" required [(ngModel)]="password" (keydown)="onKeydown($event)">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        </mat-form-field>
+
+        <br> <br>
+        <button mat-raised-button class="btn-valid" (click)="login()">Connexion &nbsp; <i class="fas fa-sign-in-alt"></i></button>
+        <br> <br>
+        <button mat-button><a class="nav-link" href="/">Retourner sur le site &nbsp; <i class="fas fa-directions"></i></a></button>
+    </div>
+</div>

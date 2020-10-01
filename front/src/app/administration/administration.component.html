@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" style="padding-top: 1%;" href="/administration">
+        <blockquote class="blockquote ">
+            <p class="mb-0">Administration</p>
+            <footer class="blockquote-footer"><cite title="Source Title">utilisateur</cite></footer>
+        </blockquote>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <button mat-button [matMenuTriggerFor]="User">Articles &nbsp; <i class="fas fa-users"></i></button>
+            <mat-menu #User="matMenu" yPosition="above">
+                <button mat-menu-item><a class="nav-link" href="#">Liste des articles &nbsp;<i
+                            class="fas fa-list-ul"></i></a></button>
+                <button mat-menu-item><a class="nav-link" href="#">Ajouter un article &nbsp;<i
+                            class="fas fa-plus"></i></a></button>
+            </mat-menu>
+        </div>
+    </div>
+</nav>
+<br>
+<div class="form">
+    <h1 style="text-align: center;">Bienvenue sur l'interface d'Administration</h1>
+    <div class="container-fluide article">
+        Tout mes articles
+        <div class="container-fluide article">
+            <div class="row">
+                <div class="col-4" style="border-style: solid;">
+                    <h2> </h2>
+                    Image here
+                </div>
+                <div class="col-8">
+                    <h2>Mon article</h2>
+                    <label>Bootstrap’s grid system uses a series of containers, rows, and columns to layout and align
+                        content.
+                        It’s built with flexbox and is fully responsive. Below is an example and an in-depth look at how
+                        the
+                        grid comes together.</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
