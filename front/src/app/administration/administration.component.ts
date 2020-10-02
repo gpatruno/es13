@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { APIService } from '../API & Auth/api.service';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-administration',
@@ -16,13 +16,20 @@ export class AdministrationComponent implements OnInit {
   }
 
   onFileSelected(event) {
-    this.selectedFile = <File>event.taget.files[0];
+    console.log(event);
+    this.selectedFile = <File> event.target.files[0];
   }
 
   onUpload() {
     const fd = new FormData();
-    fd.append('image', this.selectedFile, 'nondelimage');
+    fd.append('uploadImage', this.selectedFile, this.selectedFile.name);
 
-    this.apiService.uploadImg(fd)
+    this.apiService.uploadImg(fd).subscribe(event => {
+      if(event.type === HttpEventType.UploadProgress) {
+        console.log('Upload Progress : ' + Math.round(event.loaded / event.total * 100) + '%');
+      } else if (event.type === HttpEventType.Response) {
+        console.log(event);
+      }
+    });
   }
 }

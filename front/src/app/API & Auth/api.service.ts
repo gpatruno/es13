@@ -22,10 +22,10 @@ export class APIService {
 
   constructor(private http: HttpClient) { }
 
-  
+
   // ---------- Admin ----------- //
   loginAdmin(usernameAdmin, passwordAdmin): Observable<any> {
-    return this.http.post(endpoint + 'login', { a: usernameAdmin, b: passwordAdmin});
+    return this.http.post(endpoint + 'login', { a: usernameAdmin, b: passwordAdmin });
   }
 
   getAdmin(): Observable<any> {
@@ -37,6 +37,13 @@ export class APIService {
   }
 
   uploadImg(image): Observable<any> {
-    return this.http.post(endpoint + 'upload', image);
+    return this.http.post(endpoint + 'upload', image, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
+
+  getArticles(): Observable<any> {
+    return this.http.get(endpoint + 'articles');
   }
 }

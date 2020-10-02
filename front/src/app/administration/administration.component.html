@@ -22,7 +22,7 @@
     <h1 style="text-align: center;">Bienvenue sur l'interface d'Administration</h1>
     <div class="container">
         <h1>Enregistrer une Image</h1>
-        <input type="file" (change)="onFileSelected($event)">
+        <input type="file" accept="image/*" (change)="onFileSelected($event)">
         <button type="button" (click)="onUpload()">Enregistrer</button>
     </div>
 </div>
