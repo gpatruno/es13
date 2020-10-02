@@ -3,12 +3,13 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Admin = mongoose.model('Admin');
 const bcrypt = require('bcrypt');
+const multer = require('multer');
+const Admin = mongoose.model('Admin');
+const Article = mongoose.model('Article');
+const Image = mongoose.model('Image');
 const saltRounds = 10;
 const myPlaintextPassword = 'gpatruno1007'; // Mot de passe : gpatruno1007
-const Image = mongoose.model('Image');
-const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -55,7 +56,7 @@ router.post('/article', async (req, res) => {
 
     // article.title = req.body.title;
     // article.url = req.body.url;
-    // article.text = req.body.url;
+    // article.text = req.body.text;
     // article.date_upload = new Date(req.body.date_upload);
     // article.time_upload = req.body.time_upload;
     // article.categorie = req.body.categorie;
@@ -68,6 +69,7 @@ router.post('/article', async (req, res) => {
     //         res.status(500).send({ 'message': 'Une erreur est survenu lors de l\'ajout', 'success': false });
     //     }
     // });
+    res.status(200).send({ 'message': 'L\'article à été ajouté.', 'success': true });
 });
 
 /**
@@ -87,20 +89,8 @@ router.post('/article', async (req, res) => {
  * 
  * @apiError Forbidden the <code>Token</code> of the Admin was not found.
  */
-router.get('/', async (req, res) => {
+router.get('/articles', async (req, res) => {
     console.log(" --------------- Get INFO of One user --------------- ");
-    res.status(200).send({ 'message': 'Chargements des statistiques.', 'success': true, 'total': 1, 'result': "er" });
-    // User.find((err, doc) => {
-    //     if (!err && doc != null) {
-    //         res.status(200).send({ 'message': 'Chargements des statistiques.', 'success': true, 'total': doc.length, 'result': doc });
-    //     } else {
-    //         res.status(500).send({ 'message': 'Problème lors du chargement.', 'success': false, 'typeError': err });
-    //     }
-    // });
-});
-
-router.get('/file', async (req, res) => {
-    console.log(" --------------- Get an Upload --------------- ");
     res.status(200).send({ 'message': 'Chargements des statistiques.', 'success': true, 'total': 1, 'result': "er" });
     // User.find((err, doc) => {
     //     if (!err && doc != null) {
@@ -197,7 +187,7 @@ router.post('/new/password', async (req, res) => {
     console.log(req.body);
     let admin = new Admin(req.body);
 
-    await bcrypt.hash(admin.password, saltRounds, function (err, hash) {
+    bcrypt.hash(admin.password, saltRounds, function (err, hash) {
         // Store hash in your password DB.
         if (!err) {
             admin.password = hash;
